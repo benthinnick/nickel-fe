@@ -1,0 +1,19 @@
+{
+  "name": "shekel-frontend",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*",
+    "root-config"
+  ],
+  "scripts": {
+    "dev": "concurrently -n root,catalog,cart,account \"npm run dev -w @shekel/root-config\" \"npm run dev -w @shekel/catalog\" \"npm run dev -w @shekel/cart\" \"npm run dev -w @shekel/account\""
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "concurrently": "^9.1.2",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}

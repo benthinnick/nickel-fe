@@ -1,0 +1,46 @@
+---
+description: UI and UX rules and the Shekel color palette
+globs: "**/*.{tsx,css}"
+alwaysApply: false
+---
+
+# UI and UX
+
+Warm paper marketplace. All chrome lives in `packages/styles/marketplace.css`. Reuse the classes below. Do not add a stylesheet, CSS-in-JS, or a new hex in a component.
+
+## Palette
+
+| Token | Hex | Use |
+| --- | --- | --- |
+| Ink | `#1e1a14` | Text, secondary button label |
+| Muted | `#5c564c` | Nav, lede, table headers, helper text |
+| Paper | `#f3efe4` | Page background |
+| Card | `#fffdf8` | Cards, panels, inputs, top bar |
+| Cream | `#f7f4ec` | Label on green |
+| Line | `#ddd4c4` | Borders, secondary button outline |
+| Rule | `#eee6d8` | Table row dividers |
+| Sand | `#efe8da` | Suggestion hover, status pill |
+| Chip | `#e7e0d2` | Inactive cart count |
+| Green | `#1f6b4a` | Primary button, active nav, card hover border |
+| Clay | `#9a4632` | `.banner` errors only |
+
+Product swatches are decorative and stay inside `.swatch`: `#1f6b4a`, `#9a4632`, `#c4a574`, `#3d4f3a`, `#6e6256`, `#d7c4a3`. Do not use them for buttons, links, or text.
+
+A new token is a custom property on `:root` in `marketplace.css`, then a class. Ink on paper and cream on green are the only text pairs. Muted text does not sit on green.
+
+## Type and layout
+
+Page title and wordmark: Palatino, Palatino Linotype, Georgia. Everything else: Segoe UI, Helvetica Neue, sans-serif. One `h1.page-title` per screen. Prices use `formatMoney` and `.price` (tabular numbers).
+
+Content width is 1080px. Gap scale is 8, 12, 16, 24. Radius: 10 inputs, 14 cards and tables, 16 panels and detail, 999 pills. Primary action is `.button`. Alternate is `.button.secondary`. Status is a word inside `.status`, not color alone.
+
+At 720px and below, `.detail` and `.topbar-inner` stack. Keep that breakpoint for new rows.
+
+## Interaction
+
+- One primary action per view. Empty cart, empty search, and missing product include a link back to products.
+- Put failures in `.banner` on the page. Do not rely on the console.
+- Disable a control only when the reason is visible (out of stock, empty cart). Disabled uses the existing opacity.
+- Every input has a visible `<label>` or an `aria-label`. Search stays `role="search"`.
+- Custom controls need a `:focus-visible` state. Do not remove the outline without replacing it.
+- Do not add motion, shadows, or stock photography. Missing `image_url` stays a swatch.

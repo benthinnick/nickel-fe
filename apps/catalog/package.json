@@ -1,0 +1,18 @@
+{
+  "name": "@shekel/catalog",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@shekel/api": "*",
+    "@shekel/contracts": "*",
+    "@shekel/ui": "*",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "single-spa": "^6.0.3",
+    "single-spa-react": "^6.0.2"
+  }
+}

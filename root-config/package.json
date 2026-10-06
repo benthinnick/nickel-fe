@@ -1,0 +1,16 @@
+{
+  "name": "@shekel/root-config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@shekel/api": "*",
+    "@shekel/ui": "*",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "single-spa": "^6.0.3"
+  }
+}

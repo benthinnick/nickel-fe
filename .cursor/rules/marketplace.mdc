@@ -1,0 +1,48 @@
+---
+description: Standards for the Shekel single-spa marketplace
+alwaysApply: true
+---
+
+# Shekel marketplace
+
+Shell on port 9000. Catalog 9001, cart 9002, account 9003. One mounted app at a time. Do not add a seller console unless asked.
+
+## Data
+
+Catalog, cart, checkout, and order tracking go through `@shekel/api`. `fetch` uses `credentials: "include"` and `/api/v1`, which Vite proxies to the backend. Sign-in is Keycloak authorization code plus PKCE for client `shekel-web`. Send the access token as a Bearer header. The API accepts it only when `KEYCLOAK_ISSUER` points at the shekel realm.
+
+Response shapes live in `@shekel/contracts`: money is a decimal string, a cart line is `{ product_id, quantity }`, order status is `pending_payment | paid | payment_failed | delivered`.
+
+Cart mutations dispatch `shekel:cart-changed`. The shell refetches `GET /cart`. It does not keep its own cart.
+
+```ts
+// ❌ BAD — a module array is not the session cart
+const cart: CartItemResponse[] = []
+
+// ✅ GOOD — the API writes Redis and notifies the shell
+await upsertCartItem(productId, quantity)
+```
+
+## Routing
+
+Activity functions do not overlap. The shell renders into `#shell` only. Never render `#mf-root` from React; a shell update will delete the mounted app.
+
+Link with `AppLink` or `navigateToUrl`. Read the URL with `useLocationKey`. Do not add react-router.
+
+A new route belongs in `isCatalogPath`, `isCartPath`, or `isAccountPath`, and in that app. Catalog owns `/`, `/products`, `/products/:id`, and `/search`. Cart owns `/cart` and `/checkout`. Account owns `/login`, `/login/callback`, and `/orders/:id`.
+
+## Boundaries
+
+- `root-config` registers apps and renders the header, including search. No product grid, cart, or order markup there.
+- Shared navigation and mount helpers go in `@shekel/ui`. Shared types go in `@shekel/contracts`.
+- `src/spa.tsx` exports `bootstrap`, `mount`, and `unmount` from `single-spa-react`. Do not render on import.
+- `index.html` loads `standalone.tsx` only, for running one app alone.
+- Keep Vite settings in `mfConfig()`. Leave JSX on esbuild's automatic runtime. Do not add `@vitejs/plugin-react`; its refresh preamble breaks when the shell loads another port.
+
+```ts
+app: () => import(/* @vite-ignore */ "http://localhost:9001/src/spa.tsx")
+```
+
+## UI
+
+Visual rules and the palette are in `ui.mdc`. Format prices with `formatMoney`. Verify the changed route at http://localhost:9000 (`npm run dev` from `frontend/`). The screen is done when its content is visible, not when only the URL has changed.
