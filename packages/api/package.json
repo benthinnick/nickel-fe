@@ -1,5 +1,5 @@
 {
-  "name": "@shekel/api",
+  "name": "@nickel/api",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -7,6 +7,6 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@shekel/contracts": "*"
+    "@nickel/contracts": "*"
   }
 }

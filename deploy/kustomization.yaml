@@ -1,9 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: shekel
+namespace: nickel
 resources:
   - workloads.yaml
 images:
-  - name: shekel-frontend
-    newName: shekel-frontend
+  - name: nickel-frontend
+    newName: nickel-frontend
     newTag: local

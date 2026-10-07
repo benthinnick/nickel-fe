@@ -1,19 +1,19 @@
 ---
-description: Standards for the Shekel single-spa marketplace
+description: Standards for the Nickel single-spa marketplace
 alwaysApply: true
 ---
 
-# Shekel marketplace
+# Nickel marketplace
 
 Shell on port 9000. Catalog 9001, cart 9002, account 9003. One mounted app at a time. Do not add a seller console unless asked.
 
 ## Data
 
-Catalog, cart, checkout, and order tracking go through `@shekel/api`. `fetch` uses `credentials: "include"` and `/api/v1`, which Vite proxies to the backend. Sign-in is Keycloak authorization code plus PKCE for client `shekel-web`. Send the access token as a Bearer header. The API accepts it only when `KEYCLOAK_ISSUER` points at the shekel realm.
+Catalog, cart, checkout, and order tracking go through `@nickel/api`. `fetch` uses `credentials: "include"` and `/api/v1`, which Vite proxies to the backend. Sign-in is Keycloak authorization code plus PKCE for client `nickel-web`. Send the access token as a Bearer header. The API accepts it only when `KEYCLOAK_ISSUER` points at the nickel realm.
 
-Response shapes live in `@shekel/contracts`: money is a decimal string, a cart line is `{ product_id, quantity }`, order status is `pending_payment | paid | payment_failed | delivered`.
+Response shapes live in `@nickel/contracts`: money is a decimal string, a cart line is `{ product_id, quantity }`, order status is `pending_payment | paid | payment_failed | delivered`.
 
-Cart mutations dispatch `shekel:cart-changed`. The shell refetches `GET /cart`. It does not keep its own cart.
+Cart mutations dispatch `nickel:cart-changed`. The shell refetches `GET /cart`. It does not keep its own cart.
 
 ```ts
 // ❌ BAD — a module array is not the session cart
@@ -34,7 +34,7 @@ A new route belongs in `isCatalogPath`, `isCartPath`, or `isAccountPath`, and in
 ## Boundaries
 
 - `root-config` registers apps and renders the header, including search. No product grid, cart, or order markup there.
-- Shared navigation and mount helpers go in `@shekel/ui`. Shared types go in `@shekel/contracts`.
+- Shared navigation and mount helpers go in `@nickel/ui`. Shared types go in `@nickel/contracts`.
 - `src/spa.tsx` exports `bootstrap`, `mount`, and `unmount` from `single-spa-react`. Do not render on import.
 - `index.html` loads `standalone.tsx` only, for running one app alone.
 - Keep Vite settings in `mfConfig()`. Leave JSX on esbuild's automatic runtime. Do not add `@vitejs/plugin-react`; its refresh preamble breaks when the shell loads another port.

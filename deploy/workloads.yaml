@@ -14,14 +14,14 @@ spec:
     spec:
       containers:
         - name: shop
-          image: shekel-frontend:local
+          image: nickel-frontend:local
           imagePullPolicy: Never
-          command: ["npm", "run", "dev", "-w", "@shekel/root-config"]
+          command: ["npm", "run", "dev", "-w", "@nickel/root-config"]
           ports:
             - containerPort: 9000
           env:
             - name: API_PROXY_TARGET
-              value: http://backend.shekel.svc.cluster.local
+              value: http://backend.nickel.svc.cluster.local
             - name: VITE_CATALOG_URL
               value: http://catalog.127.0.0.1.nip.io:8929/src/spa.tsx
             - name: VITE_CART_URL
@@ -80,14 +80,14 @@ spec:
     spec:
       containers:
         - name: catalog
-          image: shekel-frontend:local
+          image: nickel-frontend:local
           imagePullPolicy: Never
-          command: ["npm", "run", "dev", "-w", "@shekel/catalog"]
+          command: ["npm", "run", "dev", "-w", "@nickel/catalog"]
           ports:
             - containerPort: 9001
           env:
             - name: API_PROXY_TARGET
-              value: http://backend.shekel.svc.cluster.local
+              value: http://backend.nickel.svc.cluster.local
           readinessProbe:
             httpGet:
               path: /
@@ -140,14 +140,14 @@ spec:
     spec:
       containers:
         - name: cart
-          image: shekel-frontend:local
+          image: nickel-frontend:local
           imagePullPolicy: Never
-          command: ["npm", "run", "dev", "-w", "@shekel/cart"]
+          command: ["npm", "run", "dev", "-w", "@nickel/cart"]
           ports:
             - containerPort: 9002
           env:
             - name: API_PROXY_TARGET
-              value: http://backend.shekel.svc.cluster.local
+              value: http://backend.nickel.svc.cluster.local
           readinessProbe:
             httpGet:
               path: /
@@ -200,14 +200,14 @@ spec:
     spec:
       containers:
         - name: account
-          image: shekel-frontend:local
+          image: nickel-frontend:local
           imagePullPolicy: Never
-          command: ["npm", "run", "dev", "-w", "@shekel/account"]
+          command: ["npm", "run", "dev", "-w", "@nickel/account"]
           ports:
             - containerPort: 9003
           env:
             - name: API_PROXY_TARGET
-              value: http://backend.shekel.svc.cluster.local
+              value: http://backend.nickel.svc.cluster.local
           readinessProbe:
             httpGet:
               path: /

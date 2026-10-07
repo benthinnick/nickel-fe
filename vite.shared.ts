@@ -10,14 +10,14 @@ export function mfConfig(port: number): UserConfig {
     esbuild: { jsx: "automatic" },
     resolve: {
       alias: {
-        "@shekel/api": path.join(frontendRoot, "packages/api/src/index.ts"),
-        "@shekel/contracts": path.join(frontendRoot, "packages/contracts/src/index.ts"),
-        "@shekel/fixtures": path.join(frontendRoot, "packages/fixtures/src/index.ts"),
-        "@shekel/ui": path.join(frontendRoot, "packages/ui/src/index.tsx"),
+        "@nickel/api": path.join(frontendRoot, "packages/api/src/index.ts"),
+        "@nickel/contracts": path.join(frontendRoot, "packages/contracts/src/index.ts"),
+        "@nickel/fixtures": path.join(frontendRoot, "packages/fixtures/src/index.ts"),
+        "@nickel/ui": path.join(frontendRoot, "packages/ui/src/index.tsx"),
       },
     },
     optimizeDeps: {
-      exclude: ["@shekel/api", "@shekel/contracts", "@shekel/fixtures", "@shekel/ui"],
+      exclude: ["@nickel/api", "@nickel/contracts", "@nickel/fixtures", "@nickel/ui"],
     },
     server: {
       host: true,

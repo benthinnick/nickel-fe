@@ -1,7 +1,7 @@
 import { addErrorHandler, registerApplication, start } from "single-spa"
-import { isAccountPath, isCartPath, isCatalogPath } from "@shekel/ui"
+import { isAccountPath, isCartPath, isCatalogPath } from "@nickel/ui"
 
-const startKey = "__shekel_root_started__"
+const startKey = "__nickel_root_started__"
 const hostWindow = window as Window & { [startKey]?: boolean }
 
 if (!hostWindow[startKey]) {
@@ -15,19 +15,19 @@ function registerMicrofrontends(): void {
   const accountUrl = import.meta.env.VITE_ACCOUNT_URL || "http://localhost:9003/src/spa.tsx"
 
   registerApplication({
-    name: "@shekel/catalog",
+    name: "@nickel/catalog",
     app: () => import(/* @vite-ignore */ catalogUrl),
     activeWhen: (location) => isCatalogPath(location.pathname),
   })
 
   registerApplication({
-    name: "@shekel/cart",
+    name: "@nickel/cart",
     app: () => import(/* @vite-ignore */ cartUrl),
     activeWhen: (location) => isCartPath(location.pathname),
   })
 
   registerApplication({
-    name: "@shekel/account",
+    name: "@nickel/account",
     app: () => import(/* @vite-ignore */ accountUrl),
     activeWhen: (location) => isAccountPath(location.pathname),
   })

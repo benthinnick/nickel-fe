@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { navigateToUrl } from "single-spa"
-import type { DeliveryResponse, OrderResponse, OrderStatus, PaymentResponse } from "@shekel/contracts"
-import { ApiError, completeLogin, formatMoney, getDelivery, getMe, getOrder, payOrder, signOut, startLogin } from "@shekel/api"
+import type { DeliveryResponse, OrderResponse, OrderStatus, PaymentResponse } from "@nickel/contracts"
+import { ApiError, completeLogin, formatMoney, getDelivery, getMe, getOrder, payOrder, signOut, startLogin } from "@nickel/api"
 
 const statusLabel: Record<OrderStatus, string> = {
   pending_payment: "Pending payment",
@@ -30,7 +30,7 @@ export function LoginPage() {
   return (
     <section className="panel stack">
       <h1 className="page-title">Sign in</h1>
-      {email ? <p>Signed in as {email}.</p> : <p className="lede">Use your Shekel account.</p>}
+      {email ? <p>Signed in as {email}.</p> : <p className="lede">Use your Nickel account.</p>}
       <div className="actions">
         {email ? (
           <button className="button secondary" type="button" onClick={() => signOut()}>

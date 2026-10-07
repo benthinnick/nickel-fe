@@ -8,14 +8,14 @@ import type {
   ProductAutocompleteResponse,
   ProductListResponse,
   ProductResponse,
-} from "@shekel/contracts"
+} from "@nickel/contracts"
 
-const STORE_KEY = "__shekel_marketplace__"
+const STORE_KEY = "__nickel_marketplace__"
 const MAX_CART_ITEM_QUANTITY = 100
 const SELLER_ID = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
 
-export const CART_CHANGED_EVENT = "shekel:cart-changed"
-export const AUTH_CHANGED_EVENT = "shekel:auth-changed"
+export const CART_CHANGED_EVENT = "nickel:cart-changed"
+export const AUTH_CHANGED_EVENT = "nickel:auth-changed"
 
 interface MarketplaceStore {
   products: ProductResponse[]

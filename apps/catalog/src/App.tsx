@@ -1,4 +1,4 @@
-import { useLocationKey } from "@shekel/ui"
+import { useLocationKey } from "@nickel/ui"
 import { ProductDetail, SearchPage } from "./pages"
 import { ProductList } from "./ProductList"
 

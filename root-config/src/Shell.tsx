@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { AUTH_CHANGED_EVENT, CART_CHANGED_EVENT, getAccessToken, getCart, getMe, startLogin } from "@shekel/api"
-import { AppLink, isAccountPath, isCartPath, isCatalogPath, useLocationKey } from "@shekel/ui"
+import { AUTH_CHANGED_EVENT, CART_CHANGED_EVENT, getAccessToken, getCart, getMe, startLogin } from "@nickel/api"
+import { AppLink, isAccountPath, isCartPath, isCatalogPath, useLocationKey } from "@nickel/ui"
 import { SearchForm } from "./SearchForm"
 
 function linkClass(active: boolean): string {
@@ -59,7 +59,7 @@ export function Shell() {
     <header className="topbar">
       <div className="topbar-inner">
         <AppLink href="/products" className="wordmark">
-          Shekel
+          Nickel
         </AppLink>
         <SearchForm key={locationKey} initialQuery={query} />
         <nav className="nav" aria-label="Marketplace">

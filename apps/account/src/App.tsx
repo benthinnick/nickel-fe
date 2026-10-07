@@ -1,4 +1,4 @@
-import { useLocationKey } from "@shekel/ui"
+import { useLocationKey } from "@nickel/ui"
 import { LoginCallback, LoginPage, OrderPage } from "./pages"
 
 export function App() {

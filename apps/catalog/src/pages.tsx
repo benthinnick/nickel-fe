@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from "react"
-import type { ProductResponse } from "@shekel/contracts"
-import { ApiError, formatMoney, getProduct, searchProducts, upsertCartItem } from "@shekel/api"
-import { AppLink, useLocationKey } from "@shekel/ui"
+import type { ProductResponse } from "@nickel/contracts"
+import { ApiError, formatMoney, getProduct, searchProducts, upsertCartItem } from "@nickel/api"
+import { AppLink, useLocationKey } from "@nickel/ui"
 import { swatchColor } from "./ProductList"
 
 export function SearchPage() {

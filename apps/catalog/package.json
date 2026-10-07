@@ -1,5 +1,5 @@
 {
-  "name": "@shekel/catalog",
+  "name": "@nickel/catalog",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -7,9 +7,9 @@
     "dev": "vite"
   },
   "dependencies": {
-    "@shekel/api": "*",
-    "@shekel/contracts": "*",
-    "@shekel/ui": "*",
+    "@nickel/api": "*",
+    "@nickel/contracts": "*",
+    "@nickel/ui": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "single-spa": "^6.0.3",

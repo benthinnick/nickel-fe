@@ -1,4 +1,4 @@
-import { useLocationKey } from "@shekel/ui"
+import { useLocationKey } from "@nickel/ui"
 import { CartPage, CheckoutPage } from "./pages"
 
 export function App() {

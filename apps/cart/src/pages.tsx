@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { navigateToUrl } from "single-spa"
-import type { CartItemResponse, ProductResponse } from "@shekel/contracts"
-import { checkout, formatMoney, getCart, getProduct, removeCartItem, upsertCartItem } from "@shekel/api"
-import { AppLink } from "@shekel/ui"
+import type { CartItemResponse, ProductResponse } from "@nickel/contracts"
+import { checkout, formatMoney, getCart, getProduct, removeCartItem, upsertCartItem } from "@nickel/api"
+import { AppLink } from "@nickel/ui"
 
 interface CartLine {
   item: CartItemResponse

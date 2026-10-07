@@ -1,5 +1,5 @@
 ---
-description: UI and UX rules and the Shekel color palette
+description: UI and UX rules and the Nickel color palette
 globs: "**/*.{tsx,css}"
 alwaysApply: false
 ---

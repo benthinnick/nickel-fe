@@ -1,5 +1,5 @@
 {
-  "name": "@shekel/root-config",
+  "name": "@nickel/root-config",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -7,8 +7,8 @@
     "dev": "vite"
   },
   "dependencies": {
-    "@shekel/api": "*",
-    "@shekel/ui": "*",
+    "@nickel/api": "*",
+    "@nickel/ui": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "single-spa": "^6.0.3"

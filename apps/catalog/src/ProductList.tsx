@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import type { ProductResponse } from "@shekel/contracts"
-import { formatMoney, listProducts } from "@shekel/api"
-import { AppLink } from "@shekel/ui"
+import type { ProductResponse } from "@nickel/contracts"
+import { formatMoney, listProducts } from "@nickel/api"
+import { AppLink } from "@nickel/ui"
 
 const swatches = ["#1f6b4a", "#9a4632", "#c4a574", "#3d4f3a", "#6e6256", "#d7c4a3"]
 

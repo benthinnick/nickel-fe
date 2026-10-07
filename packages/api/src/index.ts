@@ -7,19 +7,19 @@ import type {
   ProductAutocompleteResponse,
   ProductListResponse,
   ProductResponse,
-} from "@shekel/contracts"
+} from "@nickel/contracts"
 
 const MONEY_KEYS = new Set(["price", "unit_price", "line_total", "total", "amount"])
-const ISSUER = "http://localhost:8080/realms/shekel"
-const CLIENT_ID = "shekel-web"
+const ISSUER = "http://localhost:8080/realms/nickel"
+const CLIENT_ID = "nickel-web"
 const REDIRECT_URI = "http://localhost:9000/login/callback"
-const ACCESS_KEY = "shekel_access_token"
-const REFRESH_KEY = "shekel_refresh_token"
-const VERIFIER_KEY = "shekel_pkce_verifier"
-const STATE_KEY = "shekel_oauth_state"
+const ACCESS_KEY = "nickel_access_token"
+const REFRESH_KEY = "nickel_refresh_token"
+const VERIFIER_KEY = "nickel_pkce_verifier"
+const STATE_KEY = "nickel_oauth_state"
 
-export const CART_CHANGED_EVENT = "shekel:cart-changed"
-export const AUTH_CHANGED_EVENT = "shekel:auth-changed"
+export const CART_CHANGED_EVENT = "nickel:cart-changed"
+export const AUTH_CHANGED_EVENT = "nickel:auth-changed"
 
 export class ApiError extends Error {
   readonly status: number

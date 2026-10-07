@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react"
 import { navigateToUrl } from "single-spa"
-import { suggestNames } from "@shekel/api"
+import { suggestNames } from "@nickel/api"
 
 export function SearchForm(props: { initialQuery: string }) {
   const [draft, setDraft] = useState(props.initialQuery)

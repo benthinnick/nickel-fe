@@ -1,5 +1,5 @@
 {
-  "name": "shekel-frontend",
+  "name": "nickel-frontend",
   "private": true,
   "workspaces": [
     "packages/*",
@@ -7,7 +7,7 @@
     "root-config"
   ],
   "scripts": {
-    "dev": "concurrently -n root,catalog,cart,account \"npm run dev -w @shekel/root-config\" \"npm run dev -w @shekel/catalog\" \"npm run dev -w @shekel/cart\" \"npm run dev -w @shekel/account\""
+    "dev": "concurrently -n root,catalog,cart,account \"npm run dev -w @nickel/root-config\" \"npm run dev -w @nickel/catalog\" \"npm run dev -w @nickel/cart\" \"npm run dev -w @nickel/account\""
   },
   "devDependencies": {
     "@types/react": "^18.3.23",
