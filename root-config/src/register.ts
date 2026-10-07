@@ -10,9 +10,9 @@ if (!hostWindow[startKey]) {
 }
 
 function registerMicrofrontends(): void {
-  const catalogUrl = "http://localhost:9001/src/spa.tsx"
-  const cartUrl = "http://localhost:9002/src/spa.tsx"
-  const accountUrl = "http://localhost:9003/src/spa.tsx"
+  const catalogUrl = import.meta.env.VITE_CATALOG_URL || "http://localhost:9001/src/spa.tsx"
+  const cartUrl = import.meta.env.VITE_CART_URL || "http://localhost:9002/src/spa.tsx"
+  const accountUrl = import.meta.env.VITE_ACCOUNT_URL || "http://localhost:9003/src/spa.tsx"
 
   registerApplication({
     name: "@shekel/catalog",

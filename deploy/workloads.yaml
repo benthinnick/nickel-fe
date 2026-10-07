@@ -1,0 +1,245 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shop
+  template:
+    metadata:
+      labels:
+        app: shop
+    spec:
+      containers:
+        - name: shop
+          image: shekel-frontend:local
+          imagePullPolicy: Never
+          command: ["npm", "run", "dev", "-w", "@shekel/root-config"]
+          ports:
+            - containerPort: 9000
+          env:
+            - name: API_PROXY_TARGET
+              value: http://backend.shekel.svc.cluster.local
+            - name: VITE_CATALOG_URL
+              value: http://catalog.127.0.0.1.nip.io:8929/src/spa.tsx
+            - name: VITE_CART_URL
+              value: http://cart.127.0.0.1.nip.io:8929/src/spa.tsx
+            - name: VITE_ACCOUNT_URL
+              value: http://account.127.0.0.1.nip.io:8929/src/spa.tsx
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 9000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shop
+spec:
+  selector:
+    app: shop
+  ports:
+    - port: 80
+      targetPort: 9000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: shop
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: shop.127.0.0.1.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: shop
+                port:
+                  number: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: catalog
+  template:
+    metadata:
+      labels:
+        app: catalog
+    spec:
+      containers:
+        - name: catalog
+          image: shekel-frontend:local
+          imagePullPolicy: Never
+          command: ["npm", "run", "dev", "-w", "@shekel/catalog"]
+          ports:
+            - containerPort: 9001
+          env:
+            - name: API_PROXY_TARGET
+              value: http://backend.shekel.svc.cluster.local
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 9001
+            initialDelaySeconds: 10
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalog
+spec:
+  selector:
+    app: catalog
+  ports:
+    - port: 80
+      targetPort: 9001
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: catalog
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: catalog.127.0.0.1.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: catalog
+                port:
+                  number: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cart
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cart
+  template:
+    metadata:
+      labels:
+        app: cart
+    spec:
+      containers:
+        - name: cart
+          image: shekel-frontend:local
+          imagePullPolicy: Never
+          command: ["npm", "run", "dev", "-w", "@shekel/cart"]
+          ports:
+            - containerPort: 9002
+          env:
+            - name: API_PROXY_TARGET
+              value: http://backend.shekel.svc.cluster.local
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 9002
+            initialDelaySeconds: 10
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cart
+spec:
+  selector:
+    app: cart
+  ports:
+    - port: 80
+      targetPort: 9002
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cart
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: cart.127.0.0.1.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: cart
+                port:
+                  number: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: account
+  template:
+    metadata:
+      labels:
+        app: account
+    spec:
+      containers:
+        - name: account
+          image: shekel-frontend:local
+          imagePullPolicy: Never
+          command: ["npm", "run", "dev", "-w", "@shekel/account"]
+          ports:
+            - containerPort: 9003
+          env:
+            - name: API_PROXY_TARGET
+              value: http://backend.shekel.svc.cluster.local
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 9003
+            initialDelaySeconds: 10
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: account
+spec:
+  selector:
+    app: account
+  ports:
+    - port: 80
+      targetPort: 9003
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: account
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: account.127.0.0.1.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: account
+                port:
+                  number: 80

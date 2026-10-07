@@ -5,6 +5,7 @@ import { searchForWorkspaceRoot, type UserConfig } from "vite"
 const frontendRoot = fileURLToPath(new URL(".", import.meta.url))
 
 export function mfConfig(port: number): UserConfig {
+  const apiTarget = process.env.API_PROXY_TARGET ?? "http://localhost:8000"
   return {
     esbuild: { jsx: "automatic" },
     resolve: {
@@ -19,13 +20,14 @@ export function mfConfig(port: number): UserConfig {
       exclude: ["@shekel/api", "@shekel/contracts", "@shekel/fixtures", "@shekel/ui"],
     },
     server: {
-      host: "localhost",
+      host: true,
       port,
       strictPort: true,
       cors: true,
+      allowedHosts: true,
       proxy: {
         "/api": {
-          target: "http://localhost:8000",
+          target: apiTarget,
           changeOrigin: true,
         },
       },
